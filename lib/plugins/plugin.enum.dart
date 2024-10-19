@@ -1,3 +1,3 @@
 enum PluginEnum{
-    webView, defComp, multiEngine, codeInter
+     getUp
 }
