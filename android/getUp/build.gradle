@@ -19,6 +19,7 @@ if (flutterVersionName == null) {
 apply plugin: "com.android.dynamic-feature"
 
 android {
+    namespace = "com.example.blue_tine_deferred_components.getUp"
     compileSdk = 34
 
     compileOptions {
