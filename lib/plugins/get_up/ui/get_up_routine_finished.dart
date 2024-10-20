@@ -3,6 +3,7 @@ import 'package:blue_tine_deferred_components/app/ui/widgets/blue_step_tile.dart
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_step_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/get_up_main.dart';
+import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
 import 'package:blue_tine_deferred_components/interfaces/ui/i_plugin_stateful_widget.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
@@ -21,7 +22,7 @@ class GetUpRoutineFinished extends IPluginStatefulWidget {
 }
 
 class _GetUpRoutineFinishedState extends State<GetUpRoutineFinished> with AutomaticKeepAliveClientMixin {
-  late final RoutineCubit<GetUpP> _routineCubit = BlocProvider.of<RoutineCubit<GetUpP>>(context);
+  final RoutineCubit<GetUpP> _routineCubit = PluginManager.plugins[GetUpP] as RoutineCubit<GetUpP>;
   late final GetUpRoutineData routineData = widget.data;
   final PageController _pageController = PageController();
 
@@ -206,16 +207,17 @@ class _ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<_ResultPage> {
-  late final RoutineCubit<GetUpP> _routineCubit = BlocProvider.of<RoutineCubit<GetUpP>>(context);
+  final RoutineCubit<GetUpP> _routineCubit = PluginManager.plugins[GetUpP] as RoutineCubit<GetUpP>;
 
   void _back() {
     widget.pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
   }
 
   void _finish() {
-    widget.routineData.end();
 
     _routineCubit.onSaveRoutine(widget.routineData);
+
+    Navigator.of(context).popUntil((s)=> s.settings.name == '/');
   }
 
   @override

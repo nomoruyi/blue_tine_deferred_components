@@ -1,7 +1,7 @@
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_data.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
-import 'package:flutter/foundation.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
@@ -10,11 +10,18 @@ part 'routine_state.dart';
 
 class RoutineCubit<T> extends Cubit<RoutineState> {
 
-  RoutineCubit(this.plugin) : super(RoutineInitial());/*{
+  RoutineCubit(this.plugin, /*{required this.loadLibrary, required this.widget}*/) : super(RoutineInitial());/*{
     PluginManager.plugins[T] = this;
   }*/
 
   final PluginEnum plugin;
+
+/*
+  final Function loadLibrary;
+
+  final Widget widget;
+*/
+
 
   late final Box<IPluginRoutineData> routineBox = Hive.box<IPluginRoutineData>(HiveName.routineData.routeFromPlugin(plugin));
 

@@ -8,8 +8,6 @@ class PluginManager {
 
   static Future<void> init() async {
     // plugins[Plugin.dummy] = initDummy;
-    plugins[GetUpP] = RoutineCubit<GetUpP>(PluginEnum.getUp);
-
-
+    GetUpP.register();
   }
 }

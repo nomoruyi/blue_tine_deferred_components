@@ -64,7 +64,7 @@ class _SettingsViewState extends State<SettingsView> {
                 title: _buildUISizeSelection(),
               ),*/
               SettingsTile(
-                leading: Text('Theme', style: TextStyle(fontSize: UISize.medium)),
+                leading: Text('Dark Theme', style: TextStyle(fontSize: UISize.medium)),
                 title: _buildThemeToggle(),
               ),
             ],
@@ -190,7 +190,7 @@ class _SettingsViewState extends State<SettingsView> {
       mainAxisSize: MainAxisSize.max,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        Switch(value: _settings.theme == ThemeMode.light, onChanged: (c)=> _settings.theme = c ? ThemeMode.light : ThemeMode.dark)
+        Switch(value: _settings.theme == ThemeMode.dark, onChanged: (isActive)=> _settings.theme = isActive ? ThemeMode.dark : ThemeMode.light)
       ],
     );
   }

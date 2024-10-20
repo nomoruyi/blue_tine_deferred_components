@@ -27,7 +27,7 @@ abstract class GetUpP{
   static  Future<void> register() async {
     // await getUp.loadLibrary();
 
-    PluginManager.plugins[GetUpP] = RoutineCubit<GetUpP>(PluginEnum.getUp);
+    PluginManager.plugins[GetUpP] = RoutineCubit<GetUpP>(PluginEnum.getUp, /*loadLibrary: plugin_view, widget: plugin_view.GetUpView(PluginEnum.getUp)*/);
     await _initHive();
   }
 

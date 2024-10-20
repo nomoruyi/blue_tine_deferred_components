@@ -1,7 +1,9 @@
 import 'package:blue_tine_deferred_components/interfaces/data/duration.g.dart';
 import 'package:blue_tine_deferred_components/interfaces/data/enums/routine_status.dart';
 import 'package:blue_tine_deferred_components/interfaces/data/time_of_day.g.dart';
+import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
@@ -27,6 +29,7 @@ abstract class HiveUtil {
     // First time initializing app settings
     if (settings.isEmpty) {
       // Set to device language if device language is an available language, otherwise sets it to german
+      settings.put(HiveKey.size.name, UIType.standard.name);
       settings.put(HiveKey.theme.name, ThemeMode.system.name);
     }
 

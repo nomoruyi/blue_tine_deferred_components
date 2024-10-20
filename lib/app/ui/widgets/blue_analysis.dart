@@ -131,7 +131,7 @@ class Calendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (kDebugMode) {
+        if (kDebugMode) {
       print('ENTRIES: $calendarEntries');
     }
     Size deviceSize = MediaQuery.of(context).size;

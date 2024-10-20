@@ -1,4 +1,5 @@
 import 'package:blue_tine_deferred_components/app/cubits/settings/settings_cubit.dart';
+import 'package:blue_tine_deferred_components/app/ui/base/base_view.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:blue_tine_deferred_components/utils/settings_util.dart';
 import 'package:flutter/material.dart';
@@ -23,7 +24,7 @@ class _BlueTineAppState extends State<BlueTineApp> {
         builder: (context, state) {
           final SettingsCubit settings = BlocProvider.of<SettingsCubit>(context);
 
-          WidgetsBinding.instance.platformDispatcher.onPlatformBrightnessChanged = () => setState(() {});
+          // WidgetsBinding.instance.platformDispatcher.onPlatformBrightnessChanged = () => setState(() {});
 
           UISize.selectedUIType = settings.size;
 
@@ -33,6 +34,8 @@ class _BlueTineAppState extends State<BlueTineApp> {
               darkTheme: darkTheme,
               theme: lightTheme,
               themeMode: settings.theme,
+              initialRoute: '/',
+              home: const BaseView(),
             );
           });
         },

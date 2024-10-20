@@ -1,14 +1,19 @@
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_step_data.dart';
+import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_step_data.dart';
+import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_data.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
+import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_active.dart' deferred as get_up_routine_active;
+import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_finished.dart' deferred as get_up_routine_finished;
+
 import 'package:flutter/material.dart';
 
 class GetUpRoutineActive extends StatefulWidget {
   const GetUpRoutineActive(this.data, {super.key, required this.stepIndex});
 
-  final IPluginRoutineData data;
+  final GetUpRoutineData data;
   final int stepIndex;
 
   @override
@@ -16,7 +21,7 @@ class GetUpRoutineActive extends StatefulWidget {
 }
 
 class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
-  late final IPluginRoutineData routineData = widget.data;
+  late final GetUpRoutineData routineData = widget.data;
   late final int stepIndex = widget.stepIndex;
   late final IPluginRoutineStepData stepData = GetUpRoutineStepData(routineData.routine.steps[stepIndex])..start();
 
@@ -218,13 +223,18 @@ class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
   }
 
   _navigate() {
-    if (routineData.routine.steps.length - 1 > stepIndex) {
-/*
-      context.pushReplacementNamed(AppRoute.routineActive.plugin(PluginEnum.getUp),
-          pathParameters: {'step_index': '${stepIndex + 1}'}, extra: routineData);
+    if (routineData.routine.steps.length - 1 <= stepIndex) {
+      get_up_routine_finished.loadLibrary().then((_){
+        routineData.end();
+
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => get_up_routine_finished.GetUpRoutineFinished(PluginEnum.getUp,routineData)));
+      });
+
       return;
-*/
     }
+    get_up_routine_active.loadLibrary().then((_){
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => get_up_routine_active.GetUpRoutineActive(routineData, stepIndex: stepIndex+ 1)));
+    });
 
     // context.goNamed(AppRoute.routineFinished.plugin(PluginEnum.getUp), extra: routineData);
   }

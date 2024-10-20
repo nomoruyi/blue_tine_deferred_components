@@ -6,6 +6,7 @@ import 'package:blue_tine_deferred_components/app/ui/base/pages/i_base_page.dart
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:type_plus/type_plus.dart';
 
 class AnalysisView extends IBasePage {
   const AnalysisView(super.pageController, {super.key});
@@ -35,7 +36,7 @@ class _AnalysisViewState extends State<AnalysisView> {
   Widget build(BuildContext context) {
 
     return DefaultTabController(
-      length: 2,
+      length: PluginManager.plugins.length + 1,
       child: Scaffold(
         appBar: AppBar(
           title: Text('Analysis', style: Theme.of(context).textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w900)),
@@ -66,7 +67,7 @@ class _AnalysisViewState extends State<AnalysisView> {
           children: [
             SummeryView(widget.pageController),
             // TODO: Mega umständlich
-            // ...PluginManager.plugins.entries.map((MapEntry<Type, RoutineCubit> p) => PluginAnalysisView.create.callWith(parameters: [p.value.plugin],typeArguments: [p.key])),
+            ...PluginManager.plugins.entries.map((MapEntry<Type, RoutineCubit> p) => PluginAnalysisView.create.callWith(parameters: [p.value.plugin],typeArguments: [p.key])),
           ],
         ),
       ),
