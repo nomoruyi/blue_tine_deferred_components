@@ -8,14 +8,25 @@ import 'package:intl/intl.dart';
 
 part 'routine_state.dart';
 
-abstract class RoutineCubit extends Cubit<RoutineState> {
+abstract class PluginController {
+  PluginController(
+    this.plugin,
+    /*{required this.loadLibrary, required this.widget}*/
+  ) ;
 
-  RoutineCubit(this.plugin, /*{required this.loadLibrary, required this.widget}*/) : super(RoutineInitial());/*{
+  /*{
     PluginManager.plugins[T] = this;
   }*/
 
   final PluginEnum plugin;
 
+  bool _isEnabled = false;
+
+  bool get isEnabled => _isEnabled;
+
+  void enable() => _isEnabled = true;
+
+  void disable() => _isEnabled = false;
 
   Future<Widget> loadPluginView();
 
@@ -23,11 +34,8 @@ abstract class RoutineCubit extends Cubit<RoutineState> {
 
   List<IPluginRoutineData> get routines => routineBox.values.toList()..sort((a, b) => b.startTime.compareTo(a.startTime));
 
-  Future<void> onSaveRoutine(IPluginRoutineData routineData) async {
-    emit(SavingRoutine());
+  Future<void> saveRoutine(IPluginRoutineData routineData) async => await routineBox.put(DateFormat.yMd().format(routineData.startTime), routineData);
 
-    routineBox.put(DateFormat.yMd().format(routineData.startTime), routineData).then((_) => emit(RoutineSaved()));
-  }
 
   int getCurrentStreak() {
     if (routineBox.isEmpty) return 0;
@@ -79,7 +87,7 @@ abstract class RoutineCubit extends Cubit<RoutineState> {
 
   int getTotalExecutions() => routineBox.values.length;
 
-  double getAvgRating() => routineBox.values.map((r) => r.rating).reduce((a, b) => a +b ) / getTotalExecutions();
+  double getAvgRating() => routineBox.values.map((r) => r.rating).reduce((a, b) => a + b) / getTotalExecutions();
 
   _getSortedDates() => routineBox.values.map((data) => data.startTime).toList()..sort();
 }

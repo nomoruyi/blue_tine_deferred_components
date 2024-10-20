@@ -18,7 +18,7 @@ class GetUpAnalysisView extends StatefulWidget {
 }
 
 class GetUpAnalysisViewState extends State<GetUpAnalysisView> {
-  late final RoutineCubit _routineCubit = PluginManager.plugins[GetUpP]!;
+  late final PluginController _routineCubit = PluginManager.plugins[GetUpP]!;
 
   final List<Appointment> _calendarAppointments = [];
 

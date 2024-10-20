@@ -11,13 +11,11 @@ class DashboardView extends StatefulWidget {
 }
 
 class _DashboardViewState extends State<DashboardView> {
-
-
   Future<List<Widget>> getDashboardPlugins() async {
     final List<Widget> pluginWidgets = [];
 
-    for (RoutineCubit cubit in PluginManager.plugins.values) {
-      pluginWidgets.add(await cubit.loadPluginView());
+    for (PluginController cubit in PluginManager.plugins.values) {
+      if (cubit.isEnabled) pluginWidgets.add(await cubit.loadPluginView());
     }
 
     return pluginWidgets;
@@ -26,14 +24,17 @@ class _DashboardViewState extends State<DashboardView> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future:getDashboardPlugins(),
+        future: getDashboardPlugins(),
         builder: (context, snapshot) {
-          if(snapshot.hasError) {
+          if (snapshot.hasError) {
             return Text('ERROR');
           }
-          if(!snapshot.hasData) {
+
+          if (!snapshot.hasData) {
             return Text('LOADING');
           }
+
+          List<Widget> pluginWidgets = snapshot.data!;
 
           return Scaffold(
             appBar: AppBar(
@@ -42,9 +43,9 @@ class _DashboardViewState extends State<DashboardView> {
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
               child: ListView.separated(
-                itemCount: PluginManager.plugins.length,
+                itemCount: pluginWidgets.length,
                 itemBuilder: (context, index) {
-                  Widget widget = snapshot.data![index];
+                  Widget widget = pluginWidgets[index];
 
                   return PluginDashboardCard(PluginManager.plugins.values.toList()[index].plugin, widget);
                 },
@@ -54,7 +55,6 @@ class _DashboardViewState extends State<DashboardView> {
               ),
             ),
           );
-        }
-    );
+        });
   }
 }

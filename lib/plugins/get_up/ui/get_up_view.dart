@@ -19,7 +19,7 @@ class GetUpView extends IPluginStatefulWidget {
 }
 
 class _PluginGetUpState extends State<GetUpView> {
-  final RoutineCubit routineCubit = PluginManager.plugins[GetUpP]!;
+  final PluginController routineCubit = PluginManager.plugins[GetUpP]!;
   final GetUpData data = GetUpData(PluginEnum.getUp, description: 'A routine for waking up');
 
   final GetUpRoutine routine = GetUpP.getUpRoutine;

@@ -15,11 +15,8 @@ class BlueTineApp extends StatefulWidget {
 class _BlueTineAppState extends State<BlueTineApp> {
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(create: (context) => SettingsCubit()),
-        ...PluginManager.plugins.values.map((p) => BlocProvider(create: (context) => p))
-      ],
+    return BlocProvider(
+      create: (context) => SettingsCubit(),
       child: BlocBuilder<SettingsCubit, SettingsState>(
         builder: (context, state) {
           final SettingsCubit settings = BlocProvider.of<SettingsCubit>(context);

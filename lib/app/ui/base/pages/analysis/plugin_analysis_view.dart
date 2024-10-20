@@ -2,6 +2,7 @@ import 'package:blue_tine_deferred_components/app/cubits/routine/routine_cubit.d
 import 'package:blue_tine_deferred_components/app/data/calendar/i_plugin_routine_calendar_entry.dart';
 import 'package:blue_tine_deferred_components/app/ui/widgets/blue_analysis.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
+import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -19,7 +20,7 @@ class PluginAnalysisView<T> extends StatefulWidget {
 
 class PluginAnalysisViewState<T> extends State<PluginAnalysisView> {
 //TODO: Use Plugin Manager
-  late final RoutineCubit _routineCubit = BlocProvider.of<RoutineCubit>(context);
+  late final PluginController _routineCubit = PluginManager.plugins[T]!;
 
   final List<Appointment> _calendarAppointments = [];
 

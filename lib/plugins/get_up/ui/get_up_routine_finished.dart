@@ -22,7 +22,7 @@ class GetUpRoutineFinished extends IPluginStatefulWidget {
 }
 
 class _GetUpRoutineFinishedState extends State<GetUpRoutineFinished> with AutomaticKeepAliveClientMixin {
-  final RoutineCubit _routineCubit = PluginManager.plugins[GetUpP]!;
+  final PluginController _routineCubit = PluginManager.plugins[GetUpP]!;
   late final GetUpRoutineData routineData = widget.data;
   final PageController _pageController = PageController();
 
@@ -30,40 +30,34 @@ class _GetUpRoutineFinishedState extends State<GetUpRoutineFinished> with Automa
   Widget build(BuildContext context) {
     super.build(context);
 
-    return BlocListener<RoutineCubit, RoutineState>(
-      bloc: _routineCubit,
-      listener: (context, state) {
-        if (state is RoutineSaved) print('Push/Pop Home');
-      },
-      child: Scaffold(
-        appBar: AppBar(
-          leading: const IconButton.filled(
-              onPressed: null,
-              icon: Icon(
-                Icons.menu_rounded,
+    return Scaffold(
+      appBar: AppBar(
+        leading: const IconButton.filled(
+            onPressed: null,
+            icon: Icon(
+              Icons.menu_rounded,
+              size: 24.0,
+            )),
+        actions: [
+          IconButton.filled(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: const Icon(
+                Icons.close_rounded,
                 size: 24.0,
-              )),
-          actions: [
-            IconButton.filled(
-                onPressed: () => Navigator.of(context).pop(),
-                icon: const Icon(
-                  Icons.close_rounded,
-                  size: 24.0,
-                ))
+              ))
+        ],
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
+        child: PageView(
+          controller: _pageController,
+          children: [
+            _RatingPage(routineData, pageController: _pageController),
+            _ResultPage(
+              routineData,
+              pageController: _pageController,
+            ),
           ],
-        ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32.0),
-          child: PageView(
-            controller: _pageController,
-            children: [
-              _RatingPage(routineData, pageController: _pageController),
-              _ResultPage(
-                routineData,
-                pageController: _pageController,
-              ),
-            ],
-          ),
         ),
       ),
     );
@@ -207,17 +201,18 @@ class _ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<_ResultPage> {
-  final RoutineCubit _routineCubit = PluginManager.plugins[GetUpP]!;
+  final PluginController _routineCubit = PluginManager.plugins[GetUpP]!;
 
   void _back() {
     widget.pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOut);
   }
 
-  void _finish() {
+  Future<void> _finish() async {
 
-    _routineCubit.onSaveRoutine(widget.routineData);
+    _routineCubit.saveRoutine(widget.routineData).then((_){
+      Navigator.of(context).popUntil((s)=> s.settings.name == '/');
+   });
 
-    Navigator.of(context).popUntil((s)=> s.settings.name == '/');
   }
 
   @override

@@ -13,7 +13,7 @@ import 'package:syncfusion_flutter_calendar/calendar.dart';
 class Headline extends StatelessWidget {
   const Headline(this.routineCubit, {super.key});
 
-  final RoutineCubit routineCubit;
+  final PluginController routineCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -125,7 +125,7 @@ class Headline extends StatelessWidget {
 class Calendar extends StatelessWidget {
   Calendar(this.routineCubit, {super.key, required this.calendarEntries});
 
-  final RoutineCubit routineCubit;
+  final PluginController routineCubit;
   final CalendarController _calendarController = CalendarController();
   final List<Appointment> calendarEntries;
 
@@ -204,7 +204,7 @@ class Calendar extends StatelessWidget {
 class ToDo extends StatelessWidget {
   const ToDo(this.routineCubit, {super.key});
 
-  final RoutineCubit routineCubit;
+  final PluginController routineCubit;
 
   @override
   Widget build(BuildContext context) {
@@ -227,7 +227,7 @@ class ToDo extends StatelessWidget {
 class LastExecs extends StatelessWidget {
   const LastExecs(this.routineCubit, {super.key});
 
-  final RoutineCubit routineCubit;
+  final PluginController routineCubit;
 
   @override
   Widget build(BuildContext context) {

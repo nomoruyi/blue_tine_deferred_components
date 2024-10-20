@@ -1,6 +1,8 @@
+import 'package:blue_tine_deferred_components/app/cubits/routine/routine_cubit.dart';
 import 'package:blue_tine_deferred_components/app/ui/widgets/plugin_dashboard_card.dart';
 import 'package:blue_tine_deferred_components/app/ui/widgets/plugin_store_card.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
+import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
 
 class StoreView extends StatefulWidget {
@@ -11,7 +13,7 @@ class StoreView extends StatefulWidget {
 }
 
 class _StoreViewState extends State<StoreView> {
-  final plugins = [ const PluginStoreCard(PluginEnum.getUp, print)];
+  final List<PluginController> pluginLoadingFunctions = [];
 
 
   @override
@@ -19,6 +21,9 @@ class _StoreViewState extends State<StoreView> {
     // TODO: implement initState
     super.initState();
 
+    for(PluginController controller in PluginManager.plugins.values) {
+      pluginLoadingFunctions.add(controller);
+    }
   }
   @override
   Widget build(BuildContext context) {
@@ -29,9 +34,9 @@ class _StoreViewState extends State<StoreView> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 16.0),
         child: ListView.separated(
-          itemCount: plugins.length,
+          itemCount: pluginLoadingFunctions.length,
           itemBuilder: (context, index) {
-            return plugins[index];
+            return PluginStoreCard(PluginManager.plugins.values.toList()[index].plugin, pluginLoadingFunctions[index]);
           },
           separatorBuilder: (context, index) {
             return const Divider(height: 4.0, thickness: 0, color: Colors.transparent);
