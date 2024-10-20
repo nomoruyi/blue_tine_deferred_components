@@ -7,10 +7,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class PluginAnalysisView<T> extends StatefulWidget {
-  const   PluginAnalysisView(this.plugin, {super.key});
+  const PluginAnalysisView(this.plugin, {super.key});
 
   static create<T>(PluginEnum plugin) => PluginAnalysisView<T>(plugin);
-
 
   final PluginEnum plugin;
 
@@ -19,7 +18,8 @@ class PluginAnalysisView<T> extends StatefulWidget {
 }
 
 class PluginAnalysisViewState<T> extends State<PluginAnalysisView> {
-  late final RoutineCubit<T> _routineCubit = BlocProvider.of<RoutineCubit<T>>(context);
+//TODO: Use Plugin Manager
+  late final RoutineCubit _routineCubit = BlocProvider.of<RoutineCubit>(context);
 
   final List<Appointment> _calendarAppointments = [];
 
@@ -59,4 +59,3 @@ class PluginAnalysisViewState<T> extends State<PluginAnalysisView> {
     );
   }
 }
-

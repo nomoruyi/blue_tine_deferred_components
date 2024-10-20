@@ -1,4 +1,5 @@
 import 'package:blue_tine_deferred_components/app/ui/widgets/plugin_dashboard_card.dart';
+import 'package:blue_tine_deferred_components/app/ui/widgets/plugin_store_card.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:flutter/material.dart';
 
@@ -10,7 +11,7 @@ class StoreView extends StatefulWidget {
 }
 
 class _StoreViewState extends State<StoreView> {
-  final plugins = [ const PluginDashboardCard(PluginEnum.getUp)];
+  final plugins = [ const PluginStoreCard(PluginEnum.getUp, print)];
 
 
   @override

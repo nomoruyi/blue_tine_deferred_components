@@ -22,7 +22,7 @@ class GetUpRoutineFinished extends IPluginStatefulWidget {
 }
 
 class _GetUpRoutineFinishedState extends State<GetUpRoutineFinished> with AutomaticKeepAliveClientMixin {
-  final RoutineCubit<GetUpP> _routineCubit = PluginManager.plugins[GetUpP] as RoutineCubit<GetUpP>;
+  final RoutineCubit _routineCubit = PluginManager.plugins[GetUpP]!;
   late final GetUpRoutineData routineData = widget.data;
   final PageController _pageController = PageController();
 
@@ -207,7 +207,7 @@ class _ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<_ResultPage> {
-  final RoutineCubit<GetUpP> _routineCubit = PluginManager.plugins[GetUpP] as RoutineCubit<GetUpP>;
+  final RoutineCubit _routineCubit = PluginManager.plugins[GetUpP]!;
 
   void _back() {
     widget.pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOut);

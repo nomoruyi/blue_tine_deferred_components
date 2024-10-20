@@ -8,7 +8,7 @@ import 'package:intl/intl.dart';
 
 part 'routine_state.dart';
 
-class RoutineCubit<T> extends Cubit<RoutineState> {
+abstract class RoutineCubit extends Cubit<RoutineState> {
 
   RoutineCubit(this.plugin, /*{required this.loadLibrary, required this.widget}*/) : super(RoutineInitial());/*{
     PluginManager.plugins[T] = this;
@@ -16,12 +16,8 @@ class RoutineCubit<T> extends Cubit<RoutineState> {
 
   final PluginEnum plugin;
 
-/*
-  final Function loadLibrary;
 
-  final Widget widget;
-*/
-
+  Future<Widget> loadPluginView();
 
   late final Box<IPluginRoutineData> routineBox = Hive.box<IPluginRoutineData>(HiveName.routineData.routeFromPlugin(plugin));
 

@@ -23,3 +23,12 @@
 # deferred imports should be reviewed. Third party plugins and packages may
 # also introduce deferred imports that result in unexpected loading units.
 loading-units:
+  - id: 2
+    libraries:
+      - package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_active.dart
+      - package:circular_countdown_timer/circular_countdown_timer.dart
+      - package:circular_countdown_timer/custom_timer_painter.dart
+  - id: 3
+    libraries:
+      - package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_finished.dart
+      - package:blue_tine_deferred_components/app/ui/widgets/blue_step_tile.dart

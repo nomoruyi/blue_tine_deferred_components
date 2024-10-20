@@ -7,6 +7,7 @@ import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_step.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_step_data.dart';
+import 'package:blue_tine_deferred_components/plugins/get_up/get_up_routine_cubit.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:blue_tine_deferred_components/utils/hive_util.dart';
@@ -27,7 +28,7 @@ abstract class GetUpP{
   static  Future<void> register() async {
     // await getUp.loadLibrary();
 
-    PluginManager.plugins[GetUpP] = RoutineCubit<GetUpP>(PluginEnum.getUp, /*loadLibrary: plugin_view, widget: plugin_view.GetUpView(PluginEnum.getUp)*/);
+    PluginManager.plugins[GetUpP] = GetUpRoutineCubit(PluginEnum.getUp, /*loadLibrary: plugin_view, widget: plugin_view.GetUpView(PluginEnum.getUp)*/);
     await _initHive();
   }
 

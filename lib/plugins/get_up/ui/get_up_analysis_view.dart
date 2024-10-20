@@ -3,6 +3,7 @@ import 'package:blue_tine_deferred_components/app/data/calendar/i_plugin_routine
 import 'package:blue_tine_deferred_components/app/ui/widgets/blue_analysis.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/get_up_main.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
+import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
@@ -17,7 +18,7 @@ class GetUpAnalysisView extends StatefulWidget {
 }
 
 class GetUpAnalysisViewState extends State<GetUpAnalysisView> {
-  late final RoutineCubit<GetUpP> _routineCubit = BlocProvider.of<RoutineCubit<GetUpP>>(context);
+  late final RoutineCubit _routineCubit = PluginManager.plugins[GetUpP]!;
 
   final List<Appointment> _calendarAppointments = [];
 
