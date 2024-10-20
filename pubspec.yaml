@@ -67,6 +67,15 @@ dev_dependencies:
 flutter:
   deferred-components:
     - name: getUp
+      libraries:
+        - package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_active.dart
+        - package:circular_countdown_timer/circular_countdown_timer.dart
+        - package:circular_countdown_timer/custom_timer_painter.dart
+        - package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_finished.dart
+        - package:blue_tine_deferred_components/app/ui/widgets/blue_step_tile.dart
+        - package:blue_tine_deferred_components/plugins/get_up/ui/get_up_view.dart
+        - package:blue_tine_deferred_components/plugins/get_up/data/get_up_data.dart
+        - package:blue_tine_deferred_components/interfaces/data/i_plugin_data.dart
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
