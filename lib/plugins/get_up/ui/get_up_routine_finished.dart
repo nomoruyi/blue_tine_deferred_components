@@ -9,7 +9,6 @@ import 'package:blue_tine_deferred_components/interfaces/ui/i_plugin_stateful_wi
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class GetUpRoutineFinished extends IPluginStatefulWidget {

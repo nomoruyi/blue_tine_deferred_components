@@ -29,7 +29,7 @@ class _BaseViewState extends State<BaseView> {
     _pages = [
       const StoreView(),
       const DashboardView(),
-      AnalysisView(_pageController),
+      const AnalysisView(),
       const SettingsView(),
     ];
   }

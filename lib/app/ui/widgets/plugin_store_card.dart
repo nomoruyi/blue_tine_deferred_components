@@ -1,31 +1,44 @@
 import 'package:blue_tine_deferred_components/app/cubits/routine/routine_cubit.dart';
-import 'package:blue_tine_deferred_components/interfaces/ui/i_plugin_widget.dart';
+import 'package:blue_tine_deferred_components/interfaces/ui/i_plugin_stateful_widget.dart';
 import 'package:flutter/material.dart';
 
-class PluginStoreCard extends IPluginStatelessWidget {
-  const PluginStoreCard(super.plugin, this.pluginController, {super.key});
+class PluginStoreCard extends StatefulWidget {
+  const PluginStoreCard( this.pluginController, {super.key});
 
   final PluginController pluginController;
 
   @override
+  State<PluginStoreCard> createState() => _PluginStoreCardState();
+}
+
+class _PluginStoreCardState extends State<PluginStoreCard> {
+  @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        title: Text(plugin.name),
+        leading: widget.pluginController.isEnabled ? const Icon(Icons.download_done_rounded) : const Icon(Icons.download_rounded),
+        title: Text(widget.pluginController.plugin.name),
         subtitle: const Text('plugin.description'),
         onTap: () => _openDialog(context),
       ),
     );
   }
 
-  _openDialog(BuildContext context) {
-    enable(){
-      pluginController.enable();
-      Navigator.of(context).pop();
+  void _openDialog(BuildContext context) {
+    void install() {
+      setState(() {
+        widget.pluginController.install();
+      });
+
+      Future.delayed(Duration(milliseconds: 500)).then((_) {
+        Navigator.of(context).pop();
+      });
     }
 
-    disable(){
-      pluginController.disable();
+    void uninstall() {
+      setState(() {
+        widget.pluginController.uninstall();
+      });
       Navigator.of(context).pop();
     }
 
@@ -40,8 +53,16 @@ class PluginStoreCard extends IPluginStatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ElevatedButton(onPressed: () => enable(), child: const Text('Herunterladen')),
-                  ElevatedButton(onPressed: () => disable(), child: const Text('Deinstallieren')),
+                  widget.pluginController.isEnabled
+                      ? ElevatedButton(
+                          onPressed: () => uninstall(),
+                          child: const Text('Deinstallieren'),
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade500))
+                      : ElevatedButton(
+                          onPressed: () => install(),
+                          child: const Text('Installieren'),
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                        )
                 ],
               )
             ],

@@ -3,16 +3,14 @@ import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:flutter/material.dart';
 
 class SummeryView extends StatefulWidget {
-  const SummeryView(this.pageController, {super.key});
-
-  final PageController pageController;
+  const SummeryView( {super.key});
 
   @override
   SummeryViewState createState() => SummeryViewState();
 }
 
 class SummeryViewState extends State<SummeryView> {
-  late final List<Widget> _widgets = [_maxStreakWidget(), _discoverNewRoutines()];
+  late final List<Widget> _widgets = [_maxStreakWidget()];
 
   @override
   Widget build(BuildContext context) {
@@ -41,17 +39,6 @@ class SummeryViewState extends State<SummeryView> {
           Text('${3} days', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
           Text('Last done: ${PluginEnum.getUp.name}', style: Theme.of(context).textTheme.labelLarge),
         ],
-      ),
-    );
-  }
-
-  Widget _discoverNewRoutines() {
-    return Card(
-      color: Theme.of(context).colorScheme.tertiaryContainer,
-      child: ListTile(
-        title: Text('Discover new Routines here', style: Theme.of(context).textTheme.titleLarge),
-        trailing: Icon(Icons.adaptive.arrow_forward_rounded),
-        onTap: () => widget.pageController.animateToPage(0, duration: const Duration(milliseconds: 1000), curve: Curves.bounceOut),
       ),
     );
   }

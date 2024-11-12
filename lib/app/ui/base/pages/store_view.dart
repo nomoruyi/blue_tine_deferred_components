@@ -1,7 +1,5 @@
 import 'package:blue_tine_deferred_components/app/cubits/routine/routine_cubit.dart';
-import 'package:blue_tine_deferred_components/app/ui/widgets/plugin_dashboard_card.dart';
 import 'package:blue_tine_deferred_components/app/ui/widgets/plugin_store_card.dart';
-import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -36,7 +34,7 @@ class _StoreViewState extends State<StoreView> {
         child: ListView.separated(
           itemCount: pluginLoadingFunctions.length,
           itemBuilder: (context, index) {
-            return PluginStoreCard(PluginManager.plugins.values.toList()[index].plugin, pluginLoadingFunctions[index]);
+            return PluginStoreCard( pluginLoadingFunctions[index]);
           },
           separatorBuilder: (context, index) {
             return const Divider(height: 4.0, thickness: 0, color: Colors.transparent);

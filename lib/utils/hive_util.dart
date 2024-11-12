@@ -1,18 +1,16 @@
 import 'package:blue_tine_deferred_components/interfaces/data/duration.g.dart';
 import 'package:blue_tine_deferred_components/interfaces/data/enums/routine_status.dart';
 import 'package:blue_tine_deferred_components/interfaces/data/time_of_day.g.dart';
+import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-
-import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 
 /// Constant names for all hive boxes
 enum HiveName { settings, plugin, routine, step, routineData, stepData }
 
-extension HiveNameExt on HiveName{
-  String routeFromPlugin(PluginEnum plugin) {
+extension HiveNameExt on HiveName {
+  String plugin(PluginEnum plugin) {
     return '${plugin.name}_$name';
   }
 }
@@ -25,6 +23,9 @@ abstract class HiveUtil {
     await Hive.initFlutter();
 
     final Box settings = await Hive.openBox(HiveName.settings.name);
+
+    //Registry if Plugin is enabled or not
+    await Hive.openBox(HiveName.plugin.name);
 
     // First time initializing app settings
     if (settings.isEmpty) {

@@ -2,13 +2,12 @@ import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_d
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 
 part 'routine_state.dart';
 
-abstract class PluginController {
+abstract class PluginController  {
   PluginController(
     this.plugin,
     /*{required this.loadLibrary, required this.widget}*/
@@ -20,17 +19,16 @@ abstract class PluginController {
 
   final PluginEnum plugin;
 
-  bool _isEnabled = false;
 
-  bool get isEnabled => _isEnabled;
+  bool get isEnabled => Hive.box(HiveName.plugin.name).get(PluginEnum.getUp.name);
 
-  void enable() => _isEnabled = true;
+  void install();
 
-  void disable() => _isEnabled = false;
+  void uninstall() ;
 
   Future<Widget> loadPluginView();
 
-  late final Box<IPluginRoutineData> routineBox = Hive.box<IPluginRoutineData>(HiveName.routineData.routeFromPlugin(plugin));
+  Box<IPluginRoutineData> get routineBox => Hive.box<IPluginRoutineData>(HiveName.routineData.plugin(plugin));
 
   List<IPluginRoutineData> get routines => routineBox.values.toList()..sort((a, b) => b.startTime.compareTo(a.startTime));
 

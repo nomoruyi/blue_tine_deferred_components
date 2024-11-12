@@ -19,36 +19,57 @@ abstract class GetUpP {
 
   static Future<void> register() async {
     // await getUp.loadLibrary();
+    PluginManager.pluginBox.put(PluginEnum.getUp.name, false);
 
     PluginManager.plugins[GetUpP] = GetUpController(PluginEnum.getUp);
   }
 
-  static Future<void> enable() async {
-    PluginManager.plugins[GetUpP]?.enable();
+  static Future<void> install() async {
+    // PluginManager.plugins[GetUpP]?.enable();
 
     await _initHive();
   }
+  static Future<void> uninstall() async {
+    // PluginManager.plugins[GetUpP]?.disable();
+
+    await _deleteHive();
+  }
 
   static Future<void> _initHive() async {
+
     Hive
-      ..registerAdapter(GetUpRoutineAdapter())
-      ..registerAdapter(GetUpRoutineStepAdapter())
-      ..registerAdapter(GetUpRoutineDataAdapter())
-      ..registerAdapter(GetUpRoutineStepDataAdapter());
+      ..registerAdapter(GetUpRoutineAdapter(), override: true)
+      ..registerAdapter(GetUpRoutineStepAdapter(), override: true)
+      ..registerAdapter(GetUpRoutineDataAdapter(),override: true)
+      ..registerAdapter(GetUpRoutineStepDataAdapter(),override: true);
 
-    await Hive.openBox<IPluginRoutine>(HiveName.routine.routeFromPlugin(PluginEnum.getUp));
-    await Hive.openBox<IPluginRoutineStep>(HiveName.step.routeFromPlugin(PluginEnum.getUp));
+    await Hive.openBox<IPluginRoutine>(HiveName.routine.plugin(PluginEnum.getUp));
+    await Hive.openBox<IPluginRoutineStep>(HiveName.step.plugin(PluginEnum.getUp));
 
-    await Hive.openBox<IPluginRoutineData>(HiveName.routineData.routeFromPlugin(PluginEnum.getUp));
-    await Hive.openBox<IPluginRoutineStepData>(HiveName.stepData.routeFromPlugin(PluginEnum.getUp));
+    await Hive.openBox<IPluginRoutineData>(HiveName.routineData.plugin(PluginEnum.getUp));
+    await Hive.openBox<IPluginRoutineStepData>(HiveName.stepData.plugin(PluginEnum.getUp));
 
     _setTestData();
+
+    PluginManager.pluginBox.put(PluginEnum.getUp.name, true);
 
     isRegistered = true;
   }
 
+ static Future<void> _deleteHive() async {
+    Hive.deleteBoxFromDisk(HiveName.routine.plugin(PluginEnum.getUp));
+    Hive.deleteBoxFromDisk(HiveName.step.plugin(PluginEnum.getUp));
+
+    Hive.deleteBoxFromDisk(HiveName.routineData.plugin(PluginEnum.getUp));
+    Hive.deleteBoxFromDisk(HiveName.stepData.plugin(PluginEnum.getUp));
+
+    PluginManager.pluginBox.put(PluginEnum.getUp.name, false);
+
+    isRegistered = false;
+  }
+
   static void _setTestData() {
-    final Box<IPluginRoutineData> box = Hive.box<IPluginRoutineData>(HiveName.routineData.routeFromPlugin(PluginEnum.getUp));
+    final Box<IPluginRoutineData> box = Hive.box<IPluginRoutineData>(HiveName.routineData.plugin(PluginEnum.getUp));
 
     for (int i = 7; i <= 14; i++) {
       final GetUpRoutineData routineData = GetUpRoutineData(getUpRoutine)..test(day: i);
@@ -60,22 +81,22 @@ abstract class GetUpP {
   static final GetUpRoutine getUpRoutine = GetUpRoutine(
     'Waking up',
     'Get out of bead and start your day',
-    startTime: const TimeOfDay(hour: 6, minute: 1),
+    startTime: const TimeOfDay(hour: 6, minute: 0),
     steps: [
       GetUpRoutineStep(
         'Stretching',
         'To stretch',
-        duration: const Duration(minutes: 2),
+        duration: const Duration(minutes: 5),
       ),
       GetUpRoutineStep(
         'Brushing Teeth',
         'To brush teeth',
-        duration: const Duration(minutes: 3),
+        duration: const Duration(minutes:2),
       ),
       GetUpRoutineStep(
         'Getting Dressed',
         'To get dressed',
-        duration: const Duration(minutes: 4),
+        duration: const Duration(minutes: 3),
       )
     ],
   );

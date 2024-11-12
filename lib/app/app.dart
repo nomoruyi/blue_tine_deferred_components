@@ -1,6 +1,5 @@
 import 'package:blue_tine_deferred_components/app/cubits/settings/settings_cubit.dart';
 import 'package:blue_tine_deferred_components/app/ui/base/base_view.dart';
-import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:blue_tine_deferred_components/utils/settings_util.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

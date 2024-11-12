@@ -201,6 +201,7 @@ class Calendar extends StatelessWidget {
   }
 }
 
+/*
 class ToDo extends StatelessWidget {
   const ToDo(this.routineCubit, {super.key});
 
@@ -223,6 +224,7 @@ class ToDo extends StatelessWidget {
         ));
   }
 }
+*/
 
 class LastExecs extends StatelessWidget {
   const LastExecs(this.routineCubit, {super.key});
@@ -242,7 +244,7 @@ class LastExecs extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: routineCubit.routines.take(7).map<Widget>((data) {
+          children: routineCubit.routines.take(100).map<Widget>((data) {
             return ListTile(
               contentPadding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0.0),
               isThreeLine: true,

@@ -37,7 +37,7 @@ class _PluginGetUpState extends State<GetUpView> {
       appBar: AppBar(
         title: ListTile(
           title: Text(data.name),
-          subtitle: Text('${data.userData}'),
+          subtitle: Text(data.description),
         ),
       ),
       body: Padding(
@@ -46,7 +46,7 @@ class _PluginGetUpState extends State<GetUpView> {
             itemBuilder: (context, index) {
               return Card(
                 child: ListTile(
-                  onTap: () => print('Push Step'),
+                  onTap: () => print('Push "Step"'),
                   title: Text(routine.steps[index].name),
                   leading: const Icon(Icons.add),
                   trailing: Text(routine.steps[index].duration.formatDuration()),

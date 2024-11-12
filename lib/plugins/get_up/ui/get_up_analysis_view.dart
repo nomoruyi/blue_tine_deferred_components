@@ -5,7 +5,6 @@ import 'package:blue_tine_deferred_components/plugins/get_up/get_up_main.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class GetUpAnalysisView extends StatefulWidget {
@@ -39,7 +38,7 @@ class GetUpAnalysisViewState extends State<GetUpAnalysisView> {
           children: [
             Headline(_routineCubit),
             Calendar(_routineCubit, calendarEntries: _calendarAppointments),
-            ToDo(_routineCubit),
+            // ToDo(_routineCubit),
             LastExecs(_routineCubit),
           ],
         ),

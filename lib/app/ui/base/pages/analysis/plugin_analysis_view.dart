@@ -1,18 +1,14 @@
 import 'package:blue_tine_deferred_components/app/cubits/routine/routine_cubit.dart';
-import 'package:blue_tine_deferred_components/app/data/calendar/i_plugin_routine_calendar_entry.dart';
 import 'package:blue_tine_deferred_components/app/ui/widgets/blue_analysis.dart';
-import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:syncfusion_flutter_calendar/calendar.dart';
 
 class PluginAnalysisView<T> extends StatefulWidget {
   const PluginAnalysisView(this.plugin, {super.key});
 
-  static create<T>(PluginEnum plugin) => PluginAnalysisView<T>(plugin);
+  // static create<T>(PluginEnum plugin) => PluginAnalysisView<T>();
 
-  final PluginEnum plugin;
+  final Type plugin;
 
   @override
   PluginAnalysisViewState createState() => PluginAnalysisViewState();
@@ -20,16 +16,16 @@ class PluginAnalysisView<T> extends StatefulWidget {
 
 class PluginAnalysisViewState<T> extends State<PluginAnalysisView> {
 //TODO: Use Plugin Manager
-  late final PluginController _routineCubit = PluginManager.plugins[T]!;
+ late   final PluginController _routineCubit = PluginManager.plugins[widget.plugin]!;
 
-  final List<Appointment> _calendarAppointments = [];
+  // final List<Appointment> _calendarAppointments = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    _calendarAppointments.addAll(_routineCubit.routines.map((r) => IPluginRoutineCalendarEntry.fromRoutineData(r)));
+    // _calendarAppointments.addAll(_routineCubit.routines.map((r) => IPluginRoutineCalendarEntry.fromRoutineData(r)));
   }
 
   @override
@@ -40,8 +36,8 @@ class PluginAnalysisViewState<T> extends State<PluginAnalysisView> {
         child: Column(
           children: [
             Headline(_routineCubit),
-            Calendar(_routineCubit, calendarEntries: _calendarAppointments),
-            ToDo(_routineCubit),
+            // Calendar(_routineCubit, calendarEntries: _calendarAppointments),
+            // ToDo(_routineCubit),
             LastExecs(_routineCubit),
           ],
         ),

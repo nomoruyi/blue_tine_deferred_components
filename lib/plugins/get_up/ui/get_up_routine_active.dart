@@ -3,7 +3,6 @@ import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_step_data.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
-import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_data.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_active.dart' deferred as get_up_routine_active;
 import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_finished.dart' deferred as get_up_routine_finished;
