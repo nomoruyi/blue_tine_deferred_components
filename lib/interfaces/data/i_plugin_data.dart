@@ -1,9 +1,8 @@
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
-import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 
-abstract class IPluginData with EquatableMixin, HiveObjectMixin{
+abstract class IPluginData with  HiveObjectMixin{
   @HiveField(0)
   final PluginEnum plugin;
 
@@ -17,8 +16,4 @@ abstract class IPluginData with EquatableMixin, HiveObjectMixin{
   final dynamic userData = null;
 
   IPluginData(this.plugin, {required this.description}) : name = plugin.name ;
-
-
-  @override
-  List<Object?> get props => [name, description];
 }

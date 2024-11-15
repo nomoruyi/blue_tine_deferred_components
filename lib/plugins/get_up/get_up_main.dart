@@ -6,7 +6,7 @@ import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_step.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_step_data.dart';
-import 'package:blue_tine_deferred_components/plugins/get_up/cubits/get_up_routine_cubit.dart';
+import 'package:blue_tine_deferred_components/plugins/get_up/controller/get_up_routine_cubit.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:blue_tine_deferred_components/utils/hive_util.dart';

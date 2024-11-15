@@ -1,4 +1,4 @@
-import 'package:blue_tine_deferred_components/app/ui/base/pages/analysis_view.dart';
+import 'package:blue_tine_deferred_components/app/ui/base/pages/analytics_view.dart';
 import 'package:blue_tine_deferred_components/app/ui/base/pages/dashboard_view.dart';
 import 'package:blue_tine_deferred_components/app/ui/base/pages/settings_view.dart';
 import 'package:blue_tine_deferred_components/app/ui/base/pages/store_view.dart';
@@ -29,7 +29,7 @@ class _BaseViewState extends State<BaseView> {
     _pages = [
       const StoreView(),
       const DashboardView(),
-      const AnalysisView(),
+      const AnalyticsView(),
       const SettingsView(),
     ];
   }

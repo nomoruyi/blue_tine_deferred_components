@@ -1,20 +1,20 @@
-import 'package:blue_tine_deferred_components/app/cubits/routine/routine_cubit.dart';
+import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
 import 'package:blue_tine_deferred_components/app/ui/widgets/blue_analysis.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
 
-class PluginAnalysisView<T> extends StatefulWidget {
-  const PluginAnalysisView(this.plugin, {super.key});
+class PluginAnalyticsView<T> extends StatefulWidget {
+  const PluginAnalyticsView(this.plugin, {super.key});
 
   // static create<T>(PluginEnum plugin) => PluginAnalysisView<T>();
 
   final Type plugin;
 
   @override
-  PluginAnalysisViewState createState() => PluginAnalysisViewState();
+  PluginAnalyticsViewState createState() => PluginAnalyticsViewState();
 }
 
-class PluginAnalysisViewState<T> extends State<PluginAnalysisView> {
+class PluginAnalyticsViewState<T> extends State<PluginAnalyticsView> {
 //TODO: Use Plugin Manager
  late   final PluginController _routineCubit = PluginManager.plugins[widget.plugin]!;
 

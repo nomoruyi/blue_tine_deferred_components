@@ -1,4 +1,4 @@
-import 'package:blue_tine_deferred_components/app/cubits/routine/routine_cubit.dart';
+import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/get_up_main.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_view.dart' deferred as get_up_view;
 import 'package:flutter/material.dart';

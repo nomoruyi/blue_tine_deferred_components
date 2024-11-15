@@ -1,4 +1,4 @@
-import 'package:blue_tine_deferred_components/app/cubits/routine/routine_cubit.dart';
+import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
 import 'package:blue_tine_deferred_components/interfaces/ui/i_plugin_stateful_widget.dart';
 import 'package:flutter/material.dart';
 

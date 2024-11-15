@@ -1,4 +1,4 @@
-import 'package:blue_tine_deferred_components/app/cubits/routine/routine_cubit.dart';
+import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
 import 'package:blue_tine_deferred_components/app/data/calendar/i_plugin_routine_data_source.dart';
 import 'package:blue_tine_deferred_components/app/ui/widgets/_widgets.export.dart';
 import 'package:blue_tine_deferred_components/app/ui/widgets/blue_card.dart';

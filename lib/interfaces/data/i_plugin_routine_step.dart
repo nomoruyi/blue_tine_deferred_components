@@ -1,7 +1,6 @@
-import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-abstract class IPluginRoutineStep with EquatableMixin, HiveObjectMixin {
+abstract class IPluginRoutineStep with  HiveObjectMixin {
   //region VARIABLES
   @HiveField(0, defaultValue: 'Step Name')
   final String name;
@@ -29,7 +28,5 @@ abstract class IPluginRoutineStep with EquatableMixin, HiveObjectMixin {
 
   //region METHODS
 
-  @override
-  List<Object?> get props => [name, description];
   //endregion
 }

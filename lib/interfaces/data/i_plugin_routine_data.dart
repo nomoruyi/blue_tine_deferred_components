@@ -4,11 +4,10 @@ import 'dart:math';
 import 'package:blue_tine_deferred_components/interfaces/data/enums/routine_status.dart';
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine.dart';
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_step_data.dart';
-import 'package:equatable/equatable.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-abstract class IPluginRoutineData<Plugin> with EquatableMixin, HiveObjectMixin {
+abstract class IPluginRoutineData<Plugin> with  HiveObjectMixin {
   //region VARIABLES
   String get name => routine.name;
 

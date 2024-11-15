@@ -1,4 +1,4 @@
-import 'package:blue_tine_deferred_components/app/cubits/settings/settings_cubit.dart';
+import 'package:blue_tine_deferred_components/app/controller/settings/settings_cubit.dart';
 import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
