@@ -21,13 +21,12 @@ abstract class HiveUtil {
 
     final Box settings = await Hive.openBox(HiveName.settings.name);
 
-    await Hive.openBox(HiveName.plugin.name);
-
     if (settings.isEmpty) {
-      settings.put(HiveKey.theme.name, ThemeMode.system.name);
+      await settings.put(HiveKey.theme.name, ThemeMode.system.name);
     }
 
     Hive.registerAdapter(RoutineStatusAdapter());
+    Hive.registerAdapter(PluginEnumAdapter());
     Hive.registerAdapter(DurationAdapter());
     Hive.registerAdapter(TimeOfDayAdapter());
   }

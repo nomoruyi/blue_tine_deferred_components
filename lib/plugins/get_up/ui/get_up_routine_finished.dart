@@ -2,7 +2,7 @@ import 'package:blue_tine_deferred_components/app/ui/widgets/blue_step_tile.dart
 import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_step_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_data.dart';
-import 'package:blue_tine_deferred_components/plugins/get_up/get_up_main.dart';
+import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:blue_tine_deferred_components/utils/format_util.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
@@ -185,7 +185,7 @@ class _ResultPage extends StatefulWidget {
 }
 
 class _ResultPageState extends State<_ResultPage> {
-  final PluginController _routineCubit = PluginManager.plugins[GetUpP]!;
+  final PluginController _routineCubit = PluginManager.controller(PluginEnum.getUp);
 
   void _back() {
     widget.pageController.previousPage(duration: const Duration(milliseconds: 500), curve: Curves.easeOut);

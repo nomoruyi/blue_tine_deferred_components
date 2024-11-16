@@ -11,17 +11,8 @@ class StoreView extends StatefulWidget {
 }
 
 class _StoreViewState extends State<StoreView> {
-  final List<PluginController> pluginLoadingFunctions = [];
+  final List<PluginController> pluginLoadingFunctions = PluginManager.registeredPlugins;
 
-
-  @override
-  void initState() {
-    super.initState();
-
-    for(PluginController controller in PluginManager.plugins.values) {
-      pluginLoadingFunctions.add(controller);
-    }
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

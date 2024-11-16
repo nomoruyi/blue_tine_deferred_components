@@ -8,7 +8,7 @@ part of 'get_up_data.dart';
 
 class GetUpDataAdapter extends TypeAdapter<GetUpData> {
   @override
-  final int typeId = 20;
+  final int typeId = 21;
 
   @override
   GetUpData read(BinaryReader reader) {

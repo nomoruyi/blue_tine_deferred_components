@@ -24,15 +24,20 @@ class _PluginStoreCardState extends State<PluginDashboardCard> {
   }
 
   _openDialog(BuildContext context) {
-    start() {
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => widget.pluginView));
-    }
-
-    uninstall() {
-      setState(() async {
-       await widget.pluginController.uninstall();
-      });
+    start()  {
       Navigator.of(context).pop();
+
+      Navigator.of(context).push(MaterialPageRoute(builder: (context) => widget.pluginView));
+  }
+
+    uninstall() async {
+      await widget.pluginController.uninstall();
+
+
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        Navigator.of(context).popAndPushNamed('/');
+      }
     }
 
     showDialog(
@@ -52,7 +57,7 @@ class _PluginStoreCardState extends State<PluginDashboardCard> {
                     child: const Text('Starten'),
                   ),
                   ElevatedButton(
-                      onPressed: () => uninstall(),
+                      onPressed: () async => await uninstall(),
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade500),
                       child: const Text('Deinstallieren')),
                 ],

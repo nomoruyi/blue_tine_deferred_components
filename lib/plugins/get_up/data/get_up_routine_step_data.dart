@@ -5,7 +5,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 
 part 'get_up_routine_step_data.g.dart';
 
-@HiveType(typeId: 24)
+@HiveType(typeId: 25)
 class GetUpRoutineStepData extends IPluginRoutineStepData{
   GetUpRoutineStepData(super.step, {super.skipped });
 }

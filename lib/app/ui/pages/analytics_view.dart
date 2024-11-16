@@ -32,17 +32,17 @@ class _AnalyticsViewState extends State<AnalyticsView> {
           child: Text('Summery', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
         ),
       ),
-      ...PluginManager.plugins.entries.where((entry) => entry.value.isEnabled).map((MapEntry<Type, PluginController> p) => Tab(
+      ...PluginManager.installedPlugins.map(( PluginController p) => Tab(
           child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Text(p.value.plugin.name.toUpperCase(), style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900))))),
+              child: Text(p.plugin.name.toUpperCase(), style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900))))),
     ];
   }
 
   List<Widget> getPages() {
     return [
       const SummeryView(),
-      ...PluginManager.plugins.entries.where((entry) => entry.value.isEnabled).map((MapEntry<Type, PluginController> p) => PluginAnalyticsView(p.key)),
+      ...PluginManager.installedPlugins.map(( PluginController p) => PluginAnalyticsView(p.plugin)),
     ];
   }
 

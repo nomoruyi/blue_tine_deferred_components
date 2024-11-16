@@ -15,7 +15,7 @@ class _PluginStoreCardState extends State<PluginStoreCard> {
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading: widget.pluginController.isEnabled ? const Icon(Icons.download_done_rounded) : const Icon(Icons.download_rounded),
+        leading: widget.pluginController.isInstalled ? const Icon(Icons.download_done_rounded) : const Icon(Icons.download_rounded),
         title: Text(widget.pluginController.plugin.name),
         subtitle: const Text('plugin.description'),
         onTap: () => _openDialog(context),
@@ -25,18 +25,21 @@ class _PluginStoreCardState extends State<PluginStoreCard> {
 
   void _openDialog(BuildContext context) {
     Future<void> install() async {
-      setState(() async {
-        await widget.pluginController.install();
-      });
+      await widget.pluginController.install();
 
-      Navigator.of(context).pop();
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        Navigator.of(context).popAndPushNamed('/');
+      }
     }
 
-    void uninstall() {
-      setState(() async {
-        await widget.pluginController.uninstall();
-      });
-      Navigator.of(context).pop();
+    Future<void> uninstall() async {
+      await widget.pluginController.uninstall();
+
+      if (context.mounted) {
+        Navigator.of(context).pop();
+        Navigator.of(context).popAndPushNamed('/');
+      }
     }
 
     showDialog(
@@ -50,13 +53,13 @@ class _PluginStoreCardState extends State<PluginStoreCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  widget.pluginController.isEnabled
+                  widget.pluginController.isInstalled
                       ? ElevatedButton(
-                          onPressed: () => uninstall(),
+                          onPressed: () async =>await  uninstall(),
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade500),
                           child: const Text('Deinstallieren'))
                       : ElevatedButton(
-                          onPressed: () => install(),
+                          onPressed: () async => await install(),
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
                           child: const Text('Installieren'),
                         )

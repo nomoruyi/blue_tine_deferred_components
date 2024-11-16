@@ -7,7 +7,7 @@ import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_s
 import 'package:hive_flutter/adapters.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-abstract class IPluginRoutineData<Plugin> with  HiveObjectMixin {
+abstract class IPluginRoutineData with  HiveObjectMixin {
   //region VARIABLES
   String get name => routine.name;
 

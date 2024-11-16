@@ -11,20 +11,20 @@ class DashboardView extends StatefulWidget {
 }
 
 class _DashboardViewState extends State<DashboardView> {
-  final List<PluginController> pluginControllers = [];
+  late final List<PluginController> pluginControllers = PluginManager.installedPlugins;
 
-  void getDashboardPlugins() async {
-    for (PluginController controller in PluginManager.plugins.values) {
+/*  void getDashboardPlugins() async {
+    for (PluginController controller in PluginManager.controller.values) {
       if (controller.isEnabled) pluginControllers.add(controller);
     }
-  }
+  }*/
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
 
-    getDashboardPlugins();
+    // getDashboardPlugins();
   }
 
   @override

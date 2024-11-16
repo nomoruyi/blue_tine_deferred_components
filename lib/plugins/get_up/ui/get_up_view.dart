@@ -1,6 +1,6 @@
 import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_data.dart';
-import 'package:blue_tine_deferred_components/plugins/get_up/get_up_main.dart';
+import 'package:blue_tine_deferred_components/plugins/get_up/get_up.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_active.dart' deferred as get_up_routine_active;
@@ -18,10 +18,10 @@ class GetUpView extends StatefulWidget {
 }
 
 class _PluginGetUpState extends State<GetUpView> {
-  final PluginController routineCubit = PluginManager.plugins[GetUpP]!;
+  final PluginController routineCubit = PluginManager.controller(PluginEnum.getUp);
   final GetUpData data = GetUpData(PluginEnum.getUp, description: 'A routine for waking up');
 
-  final GetUpRoutine routine = GetUpP.getUpRoutine;
+  final GetUpRoutine routine = GetUp.getUpRoutine;
 
   @override
   Widget build(BuildContext context) {
