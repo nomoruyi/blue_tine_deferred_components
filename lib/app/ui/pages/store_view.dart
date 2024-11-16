@@ -16,7 +16,6 @@ class _StoreViewState extends State<StoreView> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     for(PluginController controller in PluginManager.plugins.values) {

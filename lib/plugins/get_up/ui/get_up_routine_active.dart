@@ -1,12 +1,10 @@
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_step_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_step_data.dart';
-import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
-import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
-import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_active.dart' deferred as get_up_routine_active;
 import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_finished.dart' deferred as get_up_routine_finished;
-
+import 'package:blue_tine_deferred_components/utils/format_util.dart';
+import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 
 class GetUpRoutineActive extends StatefulWidget {
@@ -28,14 +26,7 @@ class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
 
   final Stopwatch sw = Stopwatch();
 
-  // final ValueNotifier<bool> stopwatchNotifier = ValueNotifier(false);
-
   final CountDownController controller = CountDownController();
-
-  // final CountdownController newController = CountdownController();
-  // late final CountdownTimer cd = CountdownTimer(data.routine.steps[stepIndex].duration, const Duration(seconds: 1), stopwatch: sw);
-
-  // late final ValueNotifier<double> stepTime = ValueNotifier(data.routine.steps[stepIndex].duration.inSeconds.toDouble());
 
   @override
   void initState() {
@@ -84,18 +75,6 @@ class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
                 padding: EdgeInsets.all(8.0),
                 child: Icon(Icons.person_rounded, size: 56.0),
               ),
-              /*
-                  Countdown(
-                    controller: newController,
-                    seconds: routine.steps[stepIndex].duration.inSeconds,
-                    interval: const Duration(milliseconds: 1000),
-                    build: (BuildContext context, double time) {
-                      stepTime.value = time.toInt();
-
-                      return Text(time.toInt().toString());
-                    },
-                  )
-              */
               CircularCountDownTimer(
                 controller: controller,
                 width: size.width * 2 / 3,
@@ -109,18 +88,6 @@ class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
                 isReverseAnimation: true,
                 textStyle: TextStyle(fontSize: 40.0, color: Theme.of(context).textTheme.titleMedium?.color),
               ),
-              /*                    SimpleCircularProgressBar(
-                    size: size.shortestSide / 3 * 2,
-                    progressStrokeWidth: 24,
-                    backStrokeWidth: 24,
-                    animationDuration: data.routine.steps[stepIndex].duration.inSeconds,
-                    maxValue: data.routine.steps[stepIndex].duration.inSeconds.toDouble(),
-                    mergeMode: true,
-                    onGetText: (double time) => Text(
-                      _getRemainingDuration(time.toInt()),
-                      style: const TextStyle(fontSize: 40.0),
-                    ),
-                  )*/
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
@@ -138,28 +105,29 @@ class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
             ],
           ),
           Flexible(
-              flex: 3,
-              child: sw.isRunning
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        IconButton.filled(onPressed: _pause, icon: const Icon(Icons.pause_rounded, size: 40.0)),
-                        IconButton.filled(onPressed: _finish, icon: const Icon(Icons.check_rounded, size: 40.0)),
-                        IconButton.filled(onPressed: _skip, icon: const Icon(Icons.skip_next_rounded, size: 40.0))
-                      ],
-                    )
-                  : Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        IconButton.filled(onPressed: _resume, icon: const Icon(Icons.play_arrow_rounded, size: 40.0)),
-                        IconButton.filled(onPressed: _restart, icon: const Icon(Icons.restart_alt_rounded, size: 40.0)),
-                        IconButton.filled(onPressed: _skip, icon: const Icon(Icons.skip_next_rounded, size: 40.0))
-                      ],
-                    )),
+            flex: 3,
+            child: sw.isRunning
+                ? Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      IconButton.filled(onPressed: _pause, icon: const Icon(Icons.pause_rounded, size: 40.0)),
+                      IconButton.filled(onPressed: _finish, icon: const Icon(Icons.check_rounded, size: 40.0)),
+                      IconButton.filled(onPressed: _skip, icon: const Icon(Icons.skip_next_rounded, size: 40.0))
+                    ],
+                  )
+                : Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.max,
+                    children: [
+                      IconButton.filled(onPressed: _resume, icon: const Icon(Icons.play_arrow_rounded, size: 40.0)),
+                      IconButton.filled(onPressed: _restart, icon: const Icon(Icons.restart_alt_rounded, size: 40.0)),
+                      IconButton.filled(onPressed: _skip, icon: const Icon(Icons.skip_next_rounded, size: 40.0))
+                    ],
+                  ),
+          ),
         ],
       ),
     );
@@ -208,7 +176,7 @@ class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
 
     routineData.stepsData.add(stepData);
 
-    _navigate();
+    _navigate(context);
   }
 
   void _finish() {
@@ -218,23 +186,24 @@ class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
 
     routineData.stepsData.add(stepData);
 
-    _navigate();
+    _navigate(context);
   }
 
-  _navigate() {
+  Future<void> _navigate(BuildContext context) async {
     if (routineData.routine.steps.length - 1 <= stepIndex) {
-      get_up_routine_finished.loadLibrary().then((_){
-        routineData.end();
+      routineData.end();
+      await get_up_routine_finished.loadLibrary();
 
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => get_up_routine_finished.GetUpRoutineFinished(PluginEnum.getUp,routineData)));
-      });
+      if (context.mounted) {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => get_up_routine_finished.GetUpRoutineFinished(routineData)));
+      }
+    } else {
+      await get_up_routine_active.loadLibrary();
 
-      return;
+      if (context.mounted) {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (context) => get_up_routine_active.GetUpRoutineActive(routineData, stepIndex: stepIndex + 1)));
+      }
     }
-    get_up_routine_active.loadLibrary().then((_){
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => get_up_routine_active.GetUpRoutineActive(routineData, stepIndex: stepIndex+ 1)));
-    });
-
-    // context.goNamed(AppRoute.routineFinished.plugin(PluginEnum.getUp), extra: routineData);
   }
 }

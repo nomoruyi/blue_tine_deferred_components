@@ -47,6 +47,6 @@ abstract class IPluginRoutineStepData with  HiveObjectMixin {
     endTime = DateTime.now();
     status = RoutineStatus.aborted;
   }
-
 //endregion
+
 }

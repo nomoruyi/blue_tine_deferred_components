@@ -1,9 +1,8 @@
 import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
-import 'package:blue_tine_deferred_components/interfaces/ui/i_plugin_stateful_widget.dart';
 import 'package:flutter/material.dart';
 
 class PluginStoreCard extends StatefulWidget {
-  const PluginStoreCard( this.pluginController, {super.key});
+  const PluginStoreCard(this.pluginController, {super.key});
 
   final PluginController pluginController;
 
@@ -25,19 +24,17 @@ class _PluginStoreCardState extends State<PluginStoreCard> {
   }
 
   void _openDialog(BuildContext context) {
-    void install() {
-      setState(() {
-        widget.pluginController.install();
+    Future<void> install() async {
+      setState(() async {
+        await widget.pluginController.install();
       });
 
-      Future.delayed(Duration(milliseconds: 500)).then((_) {
-        Navigator.of(context).pop();
-      });
+      Navigator.of(context).pop();
     }
 
     void uninstall() {
-      setState(() {
-        widget.pluginController.uninstall();
+      setState(() async {
+        await widget.pluginController.uninstall();
       });
       Navigator.of(context).pop();
     }
@@ -56,12 +53,12 @@ class _PluginStoreCardState extends State<PluginStoreCard> {
                   widget.pluginController.isEnabled
                       ? ElevatedButton(
                           onPressed: () => uninstall(),
-                          child: const Text('Deinstallieren'),
-                          style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade500))
+                          style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade500),
+                          child: const Text('Deinstallieren'))
                       : ElevatedButton(
                           onPressed: () => install(),
-                          child: const Text('Installieren'),
                           style: ElevatedButton.styleFrom(backgroundColor: Colors.green.shade500),
+                          child: const Text('Installieren'),
                         )
                 ],
               )

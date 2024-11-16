@@ -8,10 +8,4 @@ part 'get_up_routine_data.g.dart';
 @HiveType(typeId: 22)
 class GetUpRoutineData extends IPluginRoutineData{
   GetUpRoutineData( super.routine, { super.status = RoutineStatus.open, super.rating = 0});
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [routine];
-
-
 }

@@ -41,7 +41,7 @@ class _DashboardViewState extends State<DashboardView> {
             return FutureBuilder(future: pluginControllers[index].loadPluginView(), builder: (context, snapshot){
 
               if(!snapshot.hasData) return const Text('LOADING');
-              if(snapshot.hasError) return const Text("ERROR");
+              if(snapshot.hasError) return const Text('ERROR');
 
               return PluginDashboardCard(pluginControllers[index], snapshot.requireData);
 

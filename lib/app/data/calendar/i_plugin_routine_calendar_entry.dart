@@ -6,8 +6,6 @@ class IPluginRoutineCalendarEntry extends Appointment {
 
   final IPluginRoutineData routineData;
 
-  // IPluginRoutineCalendarEntry(this.stepData, {required super.startTime, required super.endTime});
-
   IPluginRoutineCalendarEntry.fromRoutineData(this.routineData) : super(
     subject: routineData.name,
     startTime: routineData.startTime,

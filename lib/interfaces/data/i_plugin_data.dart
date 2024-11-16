@@ -12,8 +12,5 @@ abstract class IPluginData with  HiveObjectMixin{
   @HiveField(2, defaultValue: 'Plugin Description')
   final String description;
 
-  //TODO: Hier einen Datentyp für die Nutzungszeit
-  final dynamic userData = null;
-
   IPluginData(this.plugin, {required this.description}) : name = plugin.name ;
 }

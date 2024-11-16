@@ -10,7 +10,7 @@ class GetUpController extends PluginController{
   Future<Widget> loadPluginView() async {
     if (isEnabled) {
       await get_up_view.loadLibrary();
-      return get_up_view.GetUpView(plugin);
+      return get_up_view.GetUpView();
     }
 
     throw Exception('Plugin has to be enabled');
@@ -25,6 +25,4 @@ class GetUpController extends PluginController{
   Future<void> uninstall() async {
     await GetUpP.uninstall();
   }
-
-
 }

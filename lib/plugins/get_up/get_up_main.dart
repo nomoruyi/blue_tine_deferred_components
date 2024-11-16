@@ -15,23 +15,16 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 
 abstract class GetUpP {
-  static bool isRegistered = false;
-
   static Future<void> register() async {
-    // await getUp.loadLibrary();
     PluginManager.pluginBox.put(PluginEnum.getUp.name, false);
 
     PluginManager.plugins[GetUpP] = GetUpController(PluginEnum.getUp);
   }
 
   static Future<void> install() async {
-    // PluginManager.plugins[GetUpP]?.enable();
-
     await _initHive();
   }
   static Future<void> uninstall() async {
-    // PluginManager.plugins[GetUpP]?.disable();
-
     await _deleteHive();
   }
 
@@ -52,8 +45,6 @@ abstract class GetUpP {
     _setTestData();
 
     PluginManager.pluginBox.put(PluginEnum.getUp.name, true);
-
-    isRegistered = true;
   }
 
  static Future<void> _deleteHive() async {
@@ -64,8 +55,6 @@ abstract class GetUpP {
     Hive.deleteBoxFromDisk(HiveName.stepData.plugin(PluginEnum.getUp));
 
     PluginManager.pluginBox.put(PluginEnum.getUp.name, false);
-
-    isRegistered = false;
   }
 
   static void _setTestData() {

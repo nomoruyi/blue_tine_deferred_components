@@ -1,28 +1,20 @@
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_data.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
-import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
+import 'package:blue_tine_deferred_components/utils/hive_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 
 abstract class PluginController  {
-  PluginController(
-    this.plugin,
-    /*{required this.loadLibrary, required this.widget}*/
-  ) ;
-
-  /*{
-    PluginManager.plugins[T] = this;
-  }*/
+  PluginController(this.plugin) ;
 
   final PluginEnum plugin;
 
-
   bool get isEnabled => Hive.box(HiveName.plugin.name).get(PluginEnum.getUp.name);
 
-  void install();
+  Future<void> install();
 
-  void uninstall() ;
+  Future<void> uninstall() ;
 
   Future<Widget> loadPluginView();
 
@@ -36,17 +28,14 @@ abstract class PluginController  {
   int getCurrentStreak() {
     if (routineBox.isEmpty) return 0;
 
-    // Alle startTimes abrufen und nach Datum sortieren
     List<DateTime> startTimes = _getSortedDates();
 
     int currentStreak = 1;
 
     for (int i = startTimes.length - 1; i > 0; i--) {
-      // Prüfen, ob der aktuelle Tag der vorherigen ist
       if (startTimes[i].difference(startTimes[i - 1]).inDays == 1) {
         currentStreak++;
       } else if (startTimes[i].difference(startTimes[i - 1]).inDays > 1) {
-        // Abbruch, wenn die Differenz größer als 1 Tag ist
         break;
       }
     }
@@ -57,22 +46,18 @@ abstract class PluginController  {
   int getMaxStreak() {
     if (routineBox.isEmpty) return 0;
 
-    // Alle startTimes abrufen und nach Datum sortieren
     List<DateTime> startTimes = _getSortedDates();
 
     int maxStreak = 1;
     int currentStreak = 1;
 
     for (int i = 1; i < startTimes.length; i++) {
-      // Prüfen, ob der aktuelle Tag der vorherigen ist
       if (startTimes[i].difference(startTimes[i - 1]).inDays == 1) {
         currentStreak++;
       } else if (startTimes[i].difference(startTimes[i - 1]).inDays > 1) {
-        // Reset des aktuellen Streaks, wenn die Differenz größer als 1 Tag ist
         currentStreak = 1;
       }
 
-      // Maximalen Streak aktualisieren
       if (currentStreak > maxStreak) {
         maxStreak = currentStreak;
       }

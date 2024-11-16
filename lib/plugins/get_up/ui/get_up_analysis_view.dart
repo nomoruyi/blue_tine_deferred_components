@@ -42,18 +42,7 @@ class GetUpAnalysisViewState extends State<GetUpAnalysisView> {
             LastExecs(_routineCubit),
           ],
         ),
-      )
-
-      /*      child: ListView.separated(
-        itemCount: _widgets.length,
-        itemBuilder: (context, index) {
-          return _widgets[index];
-        },
-        separatorBuilder: (context, index) {
-          return const Divider(height: 16.0, thickness: 0, color: Colors.transparent);
-        },
-      )*/
-      ,
+      ),
     );
   }
 }

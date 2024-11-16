@@ -8,10 +8,8 @@ class PluginManager {
 
   static Box get pluginBox => Hive.box(HiveName.plugin.name);
 
-
+  /// Hier werden müssen sämtliche Plugins, die es für die App gibt, registriert werden
   static Future<void> init() async {
-    // plugins[Plugin.dummy] = initDummy;
-    GetUpP.register();
-
+   await GetUpP.register();
   }
 }

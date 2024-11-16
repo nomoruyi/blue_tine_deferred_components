@@ -1,5 +1,4 @@
 import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
-import 'package:blue_tine_deferred_components/interfaces/ui/i_plugin_stateful_widget.dart';
 import 'package:flutter/material.dart';
 
 class PluginDashboardCard extends StatefulWidget {
@@ -29,9 +28,9 @@ class _PluginStoreCardState extends State<PluginDashboardCard> {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => widget.pluginView));
     }
 
-    disable() {
-      setState(() {
-        widget.pluginController.uninstall();
+    uninstall() {
+      setState(() async {
+       await widget.pluginController.uninstall();
       });
       Navigator.of(context).pop();
     }
@@ -53,7 +52,7 @@ class _PluginStoreCardState extends State<PluginDashboardCard> {
                     child: const Text('Starten'),
                   ),
                   ElevatedButton(
-                      onPressed: () => disable(),
+                      onPressed: () => uninstall(),
                       style: ElevatedButton.styleFrom(backgroundColor: Colors.red.shade500),
                       child: const Text('Deinstallieren')),
                 ],

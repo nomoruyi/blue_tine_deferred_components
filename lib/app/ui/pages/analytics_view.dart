@@ -1,6 +1,6 @@
 import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
-import 'package:blue_tine_deferred_components/app/ui/base/pages/analysis/plugin_analytics_view.dart';
-import 'package:blue_tine_deferred_components/app/ui/base/pages/analysis/summery_view.dart';
+import 'package:blue_tine_deferred_components/app/ui/pages/analysis/plugin_analytics_view.dart';
+import 'package:blue_tine_deferred_components/app/ui/pages/analysis/summery_view.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
 

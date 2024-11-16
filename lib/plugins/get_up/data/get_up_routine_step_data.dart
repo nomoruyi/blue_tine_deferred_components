@@ -8,9 +8,4 @@ part 'get_up_routine_step_data.g.dart';
 @HiveType(typeId: 24)
 class GetUpRoutineStepData extends IPluginRoutineStepData{
   GetUpRoutineStepData(super.step, {super.skipped });
-
-
-  @override
-  // TODO: implement props
-  List<Object?> get props => [];
 }

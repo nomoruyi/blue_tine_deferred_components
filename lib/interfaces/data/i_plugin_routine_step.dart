@@ -20,12 +20,6 @@ abstract class IPluginRoutineStep with  HiveObjectMixin {
 
   IPluginRoutineStep(this.name, this.description, {required this.duration, this.isActive = true, this.autoNext = false});
 
-/*  IPluginRoutineStepData toData({String? newDescription, required Duration actualDuration })
-  {
-    return IPluginRoutineStepData(name, actualDuration, description: description, duration: duration)
-
-  } */
-
   //region METHODS
 
   //endregion

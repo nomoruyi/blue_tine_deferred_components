@@ -1,8 +1,8 @@
-import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
 import 'package:blue_tine_deferred_components/app/data/calendar/i_plugin_routine_data_source.dart';
-import 'package:blue_tine_deferred_components/app/ui/widgets/_widgets.export.dart';
 import 'package:blue_tine_deferred_components/app/ui/widgets/blue_card.dart';
-import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
+import 'package:blue_tine_deferred_components/app/ui/widgets/blue_container.dart';
+import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
+import 'package:blue_tine_deferred_components/utils/format_util.dart';
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -131,7 +131,7 @@ class Calendar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-        if (kDebugMode) {
+    if (kDebugMode) {
       print('ENTRIES: $calendarEntries');
     }
     Size deviceSize = MediaQuery.of(context).size;
@@ -234,61 +234,61 @@ class LastExecs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlueCard(
-        title: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [Text('Last Executions', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900))],
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: routineCubit.routines.take(100).map<Widget>((data) {
-            return ListTile(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0.0),
-              isThreeLine: true,
-              title: Text(DateFormat.yMd('de').format(data.startTime), style: TextStyle(fontSize: UISize.large)),
-              subtitle: Container(
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondaryContainer,
-                  borderRadius: BorderRadius.circular(16.0),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        RatingBar.builder(
-                          initialRating: data.rating,
-                          ignoreGestures: true,
-                          minRating: 1,
-                          direction: Axis.horizontal,
-                          wrapAlignment: WrapAlignment.center,
-                          allowHalfRating: false,
-                          itemCount: 5,
-                          itemSize: 24.0,
-                          itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                          itemBuilder: (context, _) => Icon(
-                            Icons.star,
-                            color: Colors.amber.getShadeColor(),
-                          ),
-                          onRatingUpdate: (double value) {},
+      title: Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [Text('Last Executions', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900))],
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: routineCubit.routines.take(100).map<Widget>((data) {
+          return ListTile(
+            contentPadding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0.0),
+            isThreeLine: true,
+            title: Text(DateFormat.yMd('de').format(data.startTime)),
+            subtitle: Container(
+              decoration: BoxDecoration(
+                color: Theme.of(context).colorScheme.secondaryContainer,
+                borderRadius: BorderRadius.circular(16.0),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      RatingBar.builder(
+                        initialRating: data.rating,
+                        ignoreGestures: true,
+                        minRating: 1,
+                        direction: Axis.horizontal,
+                        wrapAlignment: WrapAlignment.center,
+                        allowHalfRating: false,
+                        itemCount: 5,
+                        itemSize: 24.0,
+                        itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                        itemBuilder: (context, _) => Icon(
+                          Icons.star,
+                          color: Colors.amber.getShadeColor(),
                         ),
-                      ],
-                    ),
-                  ],
-                ),
+                        onRatingUpdate: (double value) {},
+                      ),
+                    ],
+                  ),
+                ],
               ),
-              trailing: Text(
-                data.duration.formatDuration(),
-                style: TextStyle(fontSize: UISize.medium),
-              ),
-            );
-          }).toList(),
-        ));
+            ),
+            trailing: Text(
+              data.duration.formatDuration(),
+            ),
+          );
+        }).toList(),
+      ),
+    );
   }
 }

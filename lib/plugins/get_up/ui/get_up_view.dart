@@ -5,14 +5,13 @@ import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_data.da
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_active.dart' deferred as get_up_routine_active;
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
-import 'package:blue_tine_deferred_components/utils/_utils.export.dart';
-import 'package:blue_tine_deferred_components/interfaces/ui/i_plugin_stateful_widget.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
+import 'package:blue_tine_deferred_components/utils/format_util.dart';
 import 'package:flutter/material.dart';
 
 
-class GetUpView extends IPluginStatefulWidget {
-  const GetUpView(super.plugin, {super.key});
+class GetUpView extends StatefulWidget {
+  const GetUpView( {super.key});
 
   @override
   State<GetUpView> createState() => _PluginGetUpState();
@@ -23,13 +22,6 @@ class _PluginGetUpState extends State<GetUpView> {
   final GetUpData data = GetUpData(PluginEnum.getUp, description: 'A routine for waking up');
 
   final GetUpRoutine routine = GetUpP.getUpRoutine;
-
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,17 +50,18 @@ class _PluginGetUpState extends State<GetUpView> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: IconButton.filled(
-        onPressed: () => _startRoutine(),
+        onPressed: () => _startRoutine(context),
         icon: const Icon(Icons.play_arrow_rounded, size: 40.0),
       ),
     );
   }
 
-  _startRoutine() {
-    get_up_routine_active.loadLibrary().then((_){
+Future<void>  _startRoutine(BuildContext context) async {
+   await get_up_routine_active.loadLibrary();
       GetUpRoutineData routineData = GetUpRoutineData(routine)..start();
 
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) => get_up_routine_active.GetUpRoutineActive(routineData, stepIndex: 0)));
-    });
+      if(context.mounted) {
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => get_up_routine_active.GetUpRoutineActive(routineData, stepIndex: 0)));
+      }
   }
 }

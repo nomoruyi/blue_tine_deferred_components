@@ -6,8 +6,6 @@ import 'package:flutter/material.dart';
 class PluginAnalyticsView<T> extends StatefulWidget {
   const PluginAnalyticsView(this.plugin, {super.key});
 
-  // static create<T>(PluginEnum plugin) => PluginAnalysisView<T>();
-
   final Type plugin;
 
   @override
@@ -18,16 +16,6 @@ class PluginAnalyticsViewState<T> extends State<PluginAnalyticsView> {
 //TODO: Use Plugin Manager
  late   final PluginController _routineCubit = PluginManager.plugins[widget.plugin]!;
 
-  // final List<Appointment> _calendarAppointments = [];
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    // _calendarAppointments.addAll(_routineCubit.routines.map((r) => IPluginRoutineCalendarEntry.fromRoutineData(r)));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,23 +24,10 @@ class PluginAnalyticsViewState<T> extends State<PluginAnalyticsView> {
         child: Column(
           children: [
             Headline(_routineCubit),
-            // Calendar(_routineCubit, calendarEntries: _calendarAppointments),
-            // ToDo(_routineCubit),
             LastExecs(_routineCubit),
           ],
         ),
-      )
-
-      /*      child: ListView.separated(
-        itemCount: _widgets.length,
-        itemBuilder: (context, index) {
-          return _widgets[index];
-        },
-        separatorBuilder: (context, index) {
-          return const Divider(height: 16.0, thickness: 0, color: Colors.transparent);
-        },
-      )*/
-      ,
+      ),
     );
   }
 }
