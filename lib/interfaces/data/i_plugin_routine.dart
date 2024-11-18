@@ -3,7 +3,7 @@ import 'package:blue_tine_deferred_components/utils/format_util.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-abstract class IPluginRoutine with  HiveObjectMixin {
+abstract class IPluginRoutine with HiveObjectMixin {
   //region VARIABLES
   @HiveField(0, defaultValue: 'Routine Name')
   final String name;

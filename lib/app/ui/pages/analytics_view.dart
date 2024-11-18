@@ -1,6 +1,6 @@
 import 'package:blue_tine_deferred_components/interfaces/controller/plugin_controller.dart';
-import 'package:blue_tine_deferred_components/app/ui/pages/analysis/plugin_analytics_view.dart';
-import 'package:blue_tine_deferred_components/app/ui/pages/analysis/summery_view.dart';
+import 'package:blue_tine_deferred_components/app/ui/pages/analytics/plugin_analytics_view.dart';
+import 'package:blue_tine_deferred_components/app/ui/pages/analytics/summery_view.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
 
@@ -52,7 +52,7 @@ class _AnalyticsViewState extends State<AnalyticsView> {
       length: tabs.length,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Analysis', style: Theme.of(context).textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w900)),
+          title: Text('Analytics', style: Theme.of(context).textTheme.headlineLarge?.copyWith(fontWeight: FontWeight.w900)),
           bottom: TabBar(
             splashFactory: NoSplash.splashFactory,
             physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),

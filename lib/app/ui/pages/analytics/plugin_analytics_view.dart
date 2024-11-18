@@ -4,7 +4,7 @@ import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/plugins/plugin_manager.dart';
 import 'package:flutter/material.dart';
 
-class PluginAnalyticsView<T> extends StatefulWidget {
+class PluginAnalyticsView extends StatefulWidget {
   const PluginAnalyticsView(this.plugin, {super.key});
 
   final PluginEnum plugin;

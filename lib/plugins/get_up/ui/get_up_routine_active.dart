@@ -30,7 +30,6 @@ class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     _start();

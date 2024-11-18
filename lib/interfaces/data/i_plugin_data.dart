@@ -1,8 +1,7 @@
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-
-abstract class IPluginData with  HiveObjectMixin{
+abstract class IPluginData with HiveObjectMixin {
   @HiveField(0)
   final PluginEnum plugin;
 
@@ -12,5 +11,5 @@ abstract class IPluginData with  HiveObjectMixin{
   @HiveField(2, defaultValue: 'Plugin Description')
   final String description;
 
-  IPluginData(this.plugin, {required this.description}) : name = plugin.name ;
+  IPluginData(this.plugin, {required this.description}) : name = plugin.name;
 }

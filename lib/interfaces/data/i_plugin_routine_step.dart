@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-abstract class IPluginRoutineStep with  HiveObjectMixin {
+abstract class IPluginRoutineStep with HiveObjectMixin {
   //region VARIABLES
   @HiveField(0, defaultValue: 'Step Name')
   final String name;
@@ -16,11 +16,12 @@ abstract class IPluginRoutineStep with  HiveObjectMixin {
 
   @HiveField(4, defaultValue: false)
   final bool autoNext;
+
   //endregion
 
   IPluginRoutineStep(this.name, this.description, {required this.duration, this.isActive = true, this.autoNext = false});
 
-  //region METHODS
+//region METHODS
 
-  //endregion
+//endregion
 }

@@ -2,7 +2,7 @@ import 'package:blue_tine_deferred_components/interfaces/data/enums/routine_stat
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_step.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-abstract class IPluginRoutineStepData with  HiveObjectMixin {
+abstract class IPluginRoutineStepData with HiveObjectMixin {
   //region VARIABLES
   String get name => step.name;
 
@@ -48,5 +48,4 @@ abstract class IPluginRoutineStepData with  HiveObjectMixin {
     status = RoutineStatus.aborted;
   }
 //endregion
-
 }

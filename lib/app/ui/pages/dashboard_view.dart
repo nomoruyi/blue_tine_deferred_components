@@ -13,20 +13,6 @@ class DashboardView extends StatefulWidget {
 class _DashboardViewState extends State<DashboardView> {
   late final List<PluginController> pluginControllers = PluginManager.installedPlugins;
 
-/*  void getDashboardPlugins() async {
-    for (PluginController controller in PluginManager.controller.values) {
-      if (controller.isEnabled) pluginControllers.add(controller);
-    }
-  }*/
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-
-    // getDashboardPlugins();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +30,6 @@ class _DashboardViewState extends State<DashboardView> {
               if(snapshot.hasError) return const Text('ERROR');
 
               return PluginDashboardCard(pluginControllers[index], snapshot.requireData);
-
             });
           },
           separatorBuilder: (context, index) {

@@ -201,31 +201,6 @@ class Calendar extends StatelessWidget {
   }
 }
 
-/*
-class ToDo extends StatelessWidget {
-  const ToDo(this.routineCubit, {super.key});
-
-  final PluginController routineCubit;
-
-  @override
-  Widget build(BuildContext context) {
-    return BlueCard(
-        title: Row(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text('To do', style: Theme.of(context).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w900)),
-            Text('< Jul 28th ~ Aug 3rd >', style: Theme.of(context).textTheme.bodyLarge)
-          ],
-        ),
-        child: const Column(
-          children: [],
-        ));
-  }
-}
-*/
-
 class LastExecs extends StatelessWidget {
   const LastExecs(this.routineCubit, {super.key});
 
