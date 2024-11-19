@@ -10,16 +10,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
-class GetUpRoutineFinished extends StatefulWidget {
-  const GetUpRoutineFinished(this.data, {super.key});
+class GetUpRoutineFinishedView extends StatefulWidget {
+  const GetUpRoutineFinishedView(this.data, {super.key});
 
   final GetUpRoutineData data;
 
   @override
-  State<GetUpRoutineFinished> createState() => _GetUpRoutineFinishedState();
+  State<GetUpRoutineFinishedView> createState() => _GetUpRoutineFinishedViewState();
 }
 
-class _GetUpRoutineFinishedState extends State<GetUpRoutineFinished> with AutomaticKeepAliveClientMixin {
+class _GetUpRoutineFinishedViewState extends State<GetUpRoutineFinishedView> with AutomaticKeepAliveClientMixin {
   late final GetUpRoutineData routineData = widget.data;
   final PageController _pageController = PageController();
 

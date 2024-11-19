@@ -1,23 +1,23 @@
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_step_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_step_data.dart';
-import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_active.dart' deferred as get_up_routine_active;
-import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_finished.dart' deferred as get_up_routine_finished;
+import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_active_view.dart' deferred as get_up_routine_active;
+import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_routine_finished_view.dart' deferred as get_up_routine_finished;
 import 'package:blue_tine_deferred_components/utils/format_util.dart';
 import 'package:circular_countdown_timer/circular_countdown_timer.dart';
 import 'package:flutter/material.dart';
 
-class GetUpRoutineActive extends StatefulWidget {
-  const GetUpRoutineActive(this.data, {super.key, required this.stepIndex});
+class GetUpRoutineActiveView extends StatefulWidget {
+  const GetUpRoutineActiveView(this.data, {super.key, required this.stepIndex});
 
   final GetUpRoutineData data;
   final int stepIndex;
 
   @override
-  State<GetUpRoutineActive> createState() => _GetUpRoutineActiveState();
+  State<GetUpRoutineActiveView> createState() => _GetUpRoutineActiveViewState();
 }
 
-class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
+class _GetUpRoutineActiveViewState extends State<GetUpRoutineActiveView> {
   late final GetUpRoutineData routineData = widget.data;
   late final int stepIndex = widget.stepIndex;
   late final IPluginRoutineStepData stepData = GetUpRoutineStepData(routineData.routine.steps[stepIndex])..start();
@@ -194,14 +194,14 @@ class _GetUpRoutineActiveState extends State<GetUpRoutineActive> {
       await get_up_routine_finished.loadLibrary();
 
       if (context.mounted) {
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) => get_up_routine_finished.GetUpRoutineFinished(routineData)));
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) => get_up_routine_finished.GetUpRoutineFinishedView(routineData)));
       }
     } else {
       await get_up_routine_active.loadLibrary();
 
       if (context.mounted) {
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => get_up_routine_active.GetUpRoutineActive(routineData, stepIndex: stepIndex + 1)));
+            .push(MaterialPageRoute(builder: (context) => get_up_routine_active.GetUpRoutineActiveView(routineData, stepIndex: stepIndex + 1)));
       }
     }
   }
