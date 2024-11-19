@@ -58,7 +58,7 @@ class _PluginGetUpState extends State<GetUpView> {
   }
 
   Future<void> _openStepView(BuildContext context, GetUpRoutineStep step) async {
-    await get_up_routine_active.loadLibrary();
+    await get_up_step.loadLibrary();
 
     if (context.mounted) {
       Navigator.of(context).push(MaterialPageRoute(builder: (context) => get_up_step.GetUpStepView(step)));

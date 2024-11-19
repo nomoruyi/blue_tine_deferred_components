@@ -15,7 +15,6 @@ class GetUpStepView extends StatelessWidget {
         padding: const EdgeInsets.all(40.0),
         child: SingleChildScrollView(
           physics: const NeverScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-
           child: Column(
             mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -26,8 +25,8 @@ class GetUpStepView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Flexible(flex: 1,child: Text('Name: ')),
-                  Flexible(flex: 1,child: Text(data.name)),
+                  const Expanded(flex: 1, child: Text('Name: ', style: TextStyle(fontWeight: FontWeight.bold))),
+                  Expanded(flex: 1, child: Text(data.name)),
                 ],
               ),
               Row(
@@ -35,8 +34,8 @@ class GetUpStepView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Flexible(flex: 1,child: Text('Description: ')),
-                  Flexible(flex: 1,child: Text(data.description ?? '')),
+                  const Expanded(child: Text('Description: ', style: TextStyle(fontWeight: FontWeight.bold))),
+                  Expanded(child: Text(data.description ?? '')),
                 ],
               ),
               Row(
@@ -44,8 +43,8 @@ class GetUpStepView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Flexible(flex: 1,child: Text('Duration: ')),
-                  Flexible(flex: 1,child: Text(data.duration.formatDuration())),
+                  const Expanded(flex: 1, child: Text('Duration: ', style: TextStyle(fontWeight: FontWeight.bold))),
+                  Expanded(flex: 1, child: Text(data.duration.formatDuration())),
                 ],
               ),
               Row(
@@ -53,8 +52,13 @@ class GetUpStepView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  const Flexible(flex: 1, child: Text('Is active? ')),
-                  Flexible(flex: 1,child: Text(data.isActive ? ' Yes' : 'No', style: TextStyle(color: data.isActive ? Colors.green : Colors.red),)),
+                  const Expanded(flex: 1, child: Text('Is active? ', style: TextStyle(fontWeight: FontWeight.bold))),
+                  Expanded(
+                      flex: 1,
+                      child: Text(
+                        data.isActive ? ' Yes' : 'No',
+                        style: TextStyle(color: data.isActive ? Colors.green : Colors.red),
+                      )),
                 ],
               ),
             ],
