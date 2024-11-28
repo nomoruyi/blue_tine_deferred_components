@@ -219,7 +219,7 @@ class LastExecs extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: routineCubit.routines.take(100).map<Widget>((data) {
+        children: routineCubit.routines.map<Widget>((data) {
           return ListTile(
             contentPadding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 0.0),
             isThreeLine: true,
