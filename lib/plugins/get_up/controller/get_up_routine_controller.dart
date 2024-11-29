@@ -2,7 +2,10 @@ import 'package:blue_tine_deferred_components/interfaces/controller/plugin_contr
 import 'package:blue_tine_deferred_components/interfaces/data/i_plugin_routine_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/data/get_up_routine_data.dart';
 import 'package:blue_tine_deferred_components/plugins/get_up/get_up.dart';
-import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_view.dart' deferred as get_up_view;
+
+import 'package:blue_tine_deferred_components/plugins/get_up/ui/get_up_view.dart'
+        deferred as get_up_view;
+
 import 'package:blue_tine_deferred_components/plugins/plugin.enum.dart';
 import 'package:blue_tine_deferred_components/utils/hive_util.dart';
 import 'package:flutter/material.dart';
@@ -34,7 +37,7 @@ class GetUpController  extends PluginController {
       return get_up_view.GetUpView();
     }
 
-    throw Exception('Plugin has to be enabled');
+    throw Exception('Plugin not installed!');
   }
 
   @override
